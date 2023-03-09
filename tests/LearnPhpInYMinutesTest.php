@@ -1,168 +1,4 @@
-<?php // PHP code must be enclosed with <?php tags
-
-// If your php file only contains PHP code, it is best practice
-// to omit the php closing tag to prevent accidental output.
-
-// Two forward slashes start a one-line comment.
-
-# So will a hash (aka pound symbol) but // is more common
-
-/*
-     Surrounding text in slash-asterisk and asterisk-slash
-     makes it a multi-line comment.
-*/
-
-// (all statements must end with a semicolon)
-
-// Use "echo" or "print" to print output
-// () are optional for print and echo
-test('Print "Hello " with no line break, use print or echo', function () {
-
-  // fill start
-  print "Hello ";
-  // fill end
-
-  $this->expectOutputString("Hello ");
-});
-
-test('Prints "World" with a line break', function () {
-
-  // fill start
-  echo "World\n";
-  // fill end 
-
-  $this->expectOutputString("World\n");
-});
-
-
-
-test('Anything outside <?php tags is echoed automatically', function () {
-  // That is because historically PHP started as a Template engine
-
-  // fill start
-  ?>Hello World Again!<?php
-  // fill end
-
-  $this->expectOutputString("Hello World Again!");
-});
-
-
-/************************************
- * Types & Variables
- */
-
-// Variables begin with the $ symbol.
-// A valid variable name starts with a letter or an underscore,
-// followed by any number of letters, numbers, or underscores.
-
-// You don't have to (and cannot) declare variables.
-// Once you assign a value, PHP will create the variable with the right type.
-
-// Boolean values are case-insensitive
-$boolean = true;  // or TRUE or True
-$boolean = FALSE; // or false or False
-
-test('Set $boolean to true', function () {
-
-  // fill start
-  $boolean = true;
-  // fill end
-  
-  $this->assertTrue($boolean);
-});
-
-test('Set $boolean to false', function () {
-
-  // fill start
-  $boolean = false;
-  // fill end
-  
-  $this->assertFalse($boolean);
-});
-
-test('Set $int1 to 12', function () {
-
-  // fill start
-  $int1 = 12;
-  // fill end
-  
-  $this->assertEquals(12, $int1);
-});
-
-
-test('Set $int2 to -12', function () {
-
-  // fill start
-  $int2 = -12;
-  // fill end
-  
-  $this->assertEquals(-12, $int2);
-});
-
-test('Set $float to 1.234', function () {
-
-  // fill start
-  $float = 1.234;
-  // fill end
-  
-  $this->assertEquals(1.234, $float);
-});
-
-test('Add two floats', function () {
-
-  // fill start
-  $sum = 1.234 + 5.678;
-  // fill end
-  
-  $this->assertEquals(6.912, $sum);
-});
-
-test('Delete variable', function () {
-  $int1 = 12;
-
-  // fill start
-  unset($int1);
-  // fill end
-  
-  $this->assertFalse(isset($int1));
-});
-
-
-test('Add two integers', function () {
-
-  // fill start
-  $sum = 1 + 1;
-  // fill end
-  
-  $this->assertEquals(2, $sum);
-});
-
-test('Subtract two integers', function () {
-
-  // fill start
-  $difference = 2 - 1;
-  // fill end
-  
-  $this->assertEquals(1, $difference);
-});
-
-test('Multiply two integers', function () {
-
-  // fill start
-  $product = 2 * 2;
-  // fill end
-  
-  $this->assertEquals(4, $product);
-});
-
-test('Divide two integers', function () {
-
-  // fill start
-  $quotient = 4 / 2;
-  // fill end
-  
-  $this->assertEquals(2, $quotient);
-});
+<?php
 
 
 // Shorthand arithmetic
@@ -171,7 +7,6 @@ test('Assign $number to 2', function () {
   $number = 2;
 
   // fill start
-  $number = 2;
   // fill end
   
   $this->assertEquals(2, $number);
@@ -181,7 +16,6 @@ test('Shorthand increment $number by 2 with +=', function () {
   $number = 2;
 
   // fill start
-  $number += 2;
   // fill end
   
   $this->assertEquals(4, $number);
@@ -191,7 +25,6 @@ test('Shorthand decrement $number by 2 with -=', function () {
   $number = 2;
 
   // fill start
-  $number -= 2;
   // fill end
   
   $this->assertEquals(0, $number);
@@ -202,7 +35,6 @@ test('Shorthand divide $number by 2 with /=', function () {
   $number = 4;
 
   // fill start
-  $number /= 2;
   // fill end
   
   $this->assertEquals(2, $number);
@@ -212,7 +44,6 @@ test('Shorthand increment $number by 1 with ++', function () {
   $number = 2;
 
   // fill start
-  $number++;
   // fill end
   
   $this->assertEquals(3, $number);
@@ -222,7 +53,6 @@ test('Shorthand decrement $number by 1 with --', function () {
   $number = 2;
 
   // fill start
-  $number--;
   // fill end
   
   $this->assertEquals(1, $number);
@@ -233,7 +63,7 @@ test('Set $sgl_quotes with single quotes to World', function () {
   // Strings should be enclosed in single quotes;
 
   // fill start
-  $sgl_quotes = 'World';
+  $sgl_quotes = ChangeMe;
   // fill end
   
   $this->assertEquals('World', $sgl_quotes);
@@ -247,7 +77,7 @@ test('Set $sgl_quotes with double quotes to Hello', function () {
   // Avoid using double quotes except to embed other variables
 
   // fill start
-  $dbl_quotes = "Hello $sgl_quotes."; 
+  $dbl_quotes = ChangeMe;
   // fill end
   
   $this->assertEquals('Hello World.', $dbl_quotes);
@@ -261,7 +91,7 @@ test('Set $escaped to contain a tab character', function () {
   // Set $escaped to This contains a x tab character.
 
   // fill start
-  $escaped   = "This contains a \t tab character.";
+  $escaped   = ChangeMe;
   // fill end
   
   $this->assertEquals("This contains a \t tab character.", $escaped);
@@ -270,14 +100,17 @@ test('Set $escaped to contain a tab character', function () {
 
 test('Set $apples to contain the number of apples', function () {
   // Set $apples to contain the number of apples
-  $number = 5;
+  $number = SecretNumber;
 
   // fill start
-  $apples = "I have x apples to eat.";
-  $apples = "I have $number apples to eat.";
+  $apples = "I have [number] apples to eat.";
+  $apples = "I have {$number} apples to eat.";
   // fill end
   
-  $this->assertEquals("I have 5 apples to eat.", $apples);
+  // expect($apples)->toContain(SecretNumber);
+  expect($apples)->toContain((string)(SecretNumber));
+  expect($apples)->toContain('I have');
+  expect($apples)->toContain('apples to eat.');
 });
 
 test('Concatenate two strings', function () {
@@ -471,19 +304,12 @@ test('Reference', function () {
   // $x will remain unchanged as the original value of $y
 
   // // fill start
-  // echo $x; // => 2
-  // echo $z; // => 2
-  // $y = 0;
-  // echo $x; // => 2
-  // echo $z; // => 0
-  // // fill end
-
-  // tests
   $this->assertEquals(2, $x);
   $this->assertEquals(2, $z);
   $y = 0;
   $this->assertEquals(2, $x);
   $this->assertEquals(0, $z);
+  // // fill end
 });
 
 
@@ -567,6 +393,7 @@ test('Autocasting', function () {
   // this is not possible
   // $integer + $string2; // 'Unsupported operand types: string + string');
   // $string + $string2; //  Unsupported operand types: string + string
+  // $string2 + $string2; //  Unsupported operand types: string + string 
 
   // fill start
   $sum = $integer + $string;
@@ -655,10 +482,19 @@ test('Ternary operator', function () {
   $this->expectOutputString('Does print');
 });
 
-// ternary shortcut operator since PHP 5.3
-// equivalent of "$x ? $x : 'Does'"
-$x = false;
-print($x ?: 'Does');
+test('Ternary shortcut operator', function () {
+  // ternary shortcut operator since PHP 5.3
+  // equivalent of "$x ? $x : 'Does'"
+
+  // fill start
+  // set x to print 'Does print'
+  $x = false;
+  // fill end
+
+  print($x ?: 'Does print');
+
+  $this->expectOutputString('Does print');
+});
 
 // null coalesce operator since php 7
 $a = null;
@@ -666,176 +502,242 @@ $b = 'Does print';
 echo $a ?? 'a is not set'; // prints 'a is not set'
 echo $b ?? 'b is not set'; // prints 'Does print'
 
+test('Null coalesce operator', function () {
+  // null coalesce operator since php 7
+  // equivalent of "$x ? $x : 'Does'"
 
-$x = 0;
-if ($x === '0') {
-  print 'Does not print';
-} elseif ($x == '1') {
-  print 'Does not print';
-} else {
-  print 'Does print';
-}
+  // fill start
+  // set x to print 'Does print'
+  $x = null;
+  $y = 'Does print';
+  // fill end
+
+  $xresult = $x ?? 'x is not set'; // prints 'x is not set'
+  $yresult = $y ?? 'y is not set'; // prints 'Does print'
+
+  $this->assertEquals('x is not set', $xresult);
+  $this->assertEquals('Does print', $yresult);
+});
 
 
+test('Switch statement', function () {
+  // Use switch to save some logic.
 
-// This alternative syntax is useful for templates:
-?>
+  // fill start
+  // set x to print 'Switch does type coercion'
+  $x = 0;
+  // fill end
 
-<?php if ($x) : ?>
-  This is displayed if the test is truthy.
-<?php else : ?>
-  This is displayed otherwise.
-<?php endif; ?>
+  switch ($x) {
+    case '0':
+      print 'Switch does type coercion';
+      break; // You must include a break, or you will fall through
+      // to cases 'two' and 'three'
+    case 'two':
+    case 'three':
+      // Do something if $variable is either 'two' or 'three'
+      break;
+    default:
+      // Do something by default
+  }
 
-<?php
+  $this->expectOutputString('Switch does type coercion');
+});
 
-// Use switch to save some logic.
-switch ($x) {
-  case '0':
-    print 'Switch does type coercion';
-    break; // You must include a break, or you will fall through
-    // to cases 'two' and 'three'
-  case 'two':
-  case 'three':
-    // Do something if $variable is either 'two' or 'three'
-    break;
-  default:
-    // Do something by default
-}
+test('While loop', function () {
+  // While, do...while and for loops are probably familiar
 
-// While, do...while and for loops are probably familiar
-$i = 0;
-while ($i < 5) {
-  echo $i++;
-} // Prints "01234"
+  // fill start
+  // set x to print '01234'
+  $x = 0;
+  // fill end
 
-echo "\n";
+  while ($x < 5) {
+    echo $x++;
+  }
+
+  $this->expectOutputString('01234');
+});
 
 $i = 0;
 do {
   echo $i++;
 } while ($i < 5); // Prints "01234"
 
-echo "\n";
+test('Do...while loop', function () {
+  // While, do...while and for loops are probably familiar
 
-for ($x = 0; $x < 10; $x++) {
-  echo $x;
-} // Prints "0123456789"
+  // fill start
+  // set x to print '01234'
+  $x = 0;
+  // fill end
 
-echo "\n";
+  do {
+    echo $x++;
+  } while ($x < 5);
 
-$wheels = ['bicycle' => 2, 'car' => 4];
+  $this->expectOutputString('01234');
+});
 
-// Foreach loops can iterate over arrays
-foreach ($wheels as $wheel_count) {
-  echo $wheel_count;
-} // Prints "24"
 
-echo "\n";
+test('For loop', function () {
+  // While, do...while and for loops are probably familiar
 
-// You can iterate over the keys as well as the values
-foreach ($wheels as $vehicle => $wheel_count) {
-  echo "A $vehicle has $wheel_count wheels";
-}
+  // fill start
+  // set x to print '0123456789'
+  $x = 0;
+  // fill end
 
-echo "\n";
-
-$i = 0;
-while ($i < 5) {
-  if ($i === 3) {
-    break; // Exit out of the while loop
+  for ($x = 0; $x < 10; $x++) {
+    echo $x;
   }
-  echo $i++;
-} // Prints "012"
 
-for ($i = 0; $i < 5; $i++) {
-  if ($i === 3) {
-    continue; // Skip this iteration of the loop
+  $this->expectOutputString('0123456789');
+});
+
+test('Foreach loop', function () {
+  // Foreach loops can iterate over arrays
+
+  // fill start
+  // set x to print '24'
+  $x = ['bicycle' => 2, 'car' => 4];
+  // fill end
+
+  foreach ($x as $wheel_count) {
+    echo $wheel_count;
   }
-  echo $i;
-} // Prints "0124"
+
+  $this->expectOutputString('24');
+});
+
+
+
+test('Foreach loop with keys', function () {
+  // Foreach loops can iterate over arrays
+
+  // fill start
+  // set x to print 'A bicycle has 2 wheelsA car has 4 wheels'
+  $x = ['bicycle' => 2, 'car' => 4];
+  // fill end
+
+  foreach ($x as $vehicle => $wheel_count) {
+    echo "A $vehicle has $wheel_count wheels.";
+  }
+
+  $this->expectOutputString('A bicycle has 2 wheels.A car has 4 wheels.');
+});
+
+
+test('Break statement', function () {
+  // Break and continue can be used to control loops
+
+  // fill start
+  // set x to print '012'
+  $x = 0;
+  // fill end
+
+  while ($x < 5) {
+    if ($x === 3) {
+      break; // Exit out of the while loop
+    }
+    echo $x++;
+  }
+
+  $this->expectOutputString('012');
+});
+
+test('Continue statement', function () {
+  // Break and continue can be used to control loops
+
+  // fill start
+  // set x to print '0124'
+  $x = 0;
+  // fill end
+
+  for ($x = 0; $x < 5; $x++) {
+    if ($x === 3) {
+      continue; // Skip this iteration of the loop
+    }
+    echo $x;
+  }
+
+  $this->expectOutputString('0124');
+});
 
 
 /********************************
  * Functions
  */
-
-// Define a function with "function":
-function my_function()
-{
-  return 'Hello';
-}
-
-echo my_function(); // => "Hello"
-
 // A valid function name starts with a letter or underscore, followed by any
 // number of letters, numbers, or underscores.
 
-function add($x, $y = 1)
-{ // $y is optional and defaults to 1
-  $result = $x + $y;
-  return $result;
-}
 
-echo add(4); // => 5
-echo add(4, 2); // => 6
+test('Function without parameters', function () {
+  // Define a function with "function":
 
-// $result is not accessible outside the function
-// print $result; // Gives a warning.
-
-// Since PHP 5.3 you can declare anonymous functions;
-$inc = function ($x) {
-  return $x + 1;
-};
-
-echo $inc(2); // => 3
-
-function foo($x, $y, $z)
-{
-  echo "$x - $y - $z";
-}
-
-// Functions can return functions
-function bar($x, $y)
-{
-  // Use 'use' to bring in outside variables
-  return function ($z) use ($x, $y) {
-    foo($x, $y, $z);
-  };
-}
-
-$bar = bar('A', 'B');
-$bar('C'); // Prints "A - B - C"
-
-// You can call named functions using strings
-$function_name = 'add';
-echo $function_name(1, 2); // => 3
-// Useful for programmatically determining which function to run.
-// Or, use call_user_func(callable $callback [, $parameter [, ... ]]);
-
-
-// You can get all the parameters passed to a function
-function parameters()
-{
-  $numargs = func_num_args();
-  if ($numargs > 0) {
-    echo func_get_arg(0) . ' | ';
+  // fill start
+  // set x to print 'Hello'
+  function my_function()
+  {
+    return 'Hello';
   }
-  $args_array = func_get_args();
-  foreach ($args_array as $key => $arg) {
-    echo $key . ' - ' . $arg . ' | ';
+  // fill end
+
+  echo my_function(); // => "Hello"
+
+  $this->expectOutputString('Hello');
+});
+
+test('Function with parameters', function () {
+  // Define a function with "function":
+
+  // fill start
+  // set x to print 'Hello, John'
+  function my_function_with_parameters($name)
+  {
+    return "Hello, $name";
   }
-}
+  // fill end
 
-parameters('Hello', 'World'); // Hello | 0 - Hello | 1 - World |
+  echo my_function_with_parameters('John'); // => "Hello, John"
 
-// Since PHP 5.6 you can get a variable number of arguments
-function variable($word, ...$list)
-{
-  echo $word . " || ";
-  foreach ($list as $item) {
-    echo $item . ' | ';
+  $this->expectOutputString('Hello, John');
+});
+
+
+
+test('Function with optional parameters', function () {
+  // Define a function with "function":
+
+  function add($x, $y = 1)
+  { // $y is optional and defaults to 1
+    $result = $x + $y;
+    return $result;
   }
-}
 
-variable("Separate", "Hello", "World"); // Separate || Hello | World |
+  echo add(4); // => 5
+  echo add(4, 2); // => 6
+
+  $this->expectOutputString('56');
+
+});
+
+
+test('Function with variable number of parameters', function () {
+  // Define a function with "function":
+
+  // fill start
+  // set x to print 'Separate || Hello | World |'
+  function variablef($word, ...$list)
+  {
+    echo $word . " || ";
+    foreach ($list as $item) {
+      echo $item . ' | ';
+    }
+  }
+  // fill end
+
+  variablef("Separate", "Hello", "World"); // Separate || Hello | World |
+
+  $this->expectOutputString('Separate || Hello | World | ');
+});

@@ -1,5 +1,8 @@
 <?php
 
+const ChangeMe = "ChangeMe must be changed, is only a placeholder";
+const SecretNumber = 42;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
