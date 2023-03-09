@@ -421,154 +421,239 @@ test('Add an element to the end of an array', function () {
 
 });
 
-test('Remove an element from an array', function () {
+test('Remove an element from an array with array_splice', function () {
   // Remove 'Two' from an array
 
   $array = ['One', 'Two', 'Three'];
 
   // fill start
-  unset($array[1]);
-  
-  // print the array
-  print_r($array);
-
+  array_splice($array, 1, 1);
   // fill end
 
-  // the new array should be ['One', 'Three']
-  $this->
+  $this->assertEquals(['One', 'Three'], $array);
 
 });
 
 /********************************
  * Output
  */
+test('Echo a number', function () {
+  // Echo scalar variables directly
 
-echo ('Hello World!');
-// Prints Hello World! to stdout.
-// Stdout is the web page if running in a browser.
+  // fill start
+  echo 100;
+  // fill end
 
-print('Hello World!'); // The same as echo
+  $this->expectOutputString('100');
+});
 
-// echo and print are language constructs too, so you can drop the parentheses
-echo 'Hello World!';
-print 'Hello World!';
+test('Echo a variable', function () {
+  // Echo scalar variables directly
 
-$paragraph = 'paragraph';
+  $variable = 'Hello World';
 
-echo 100;        // Echo scalar variables directly
-echo $paragraph; // or variables
+  // fill start
+  echo $variable;
+  // fill end
 
-// If short open tags are configured, or your PHP version is
-// 5.4.0 or greater, you can use the short echo syntax
-?>
-<p><?= $paragraph ?></p>
-<?php
+  $this->expectOutputString('Hello World');
+});
 
-$x = 1;
-$y = 2;
-$x = $y; // $x now contains the same value as $y
-$z = &$y;
-// $z now contains a reference to $y. Changing the value of
-// $z will change the value of $y also, and vice-versa.
-// $x will remain unchanged as the original value of $y
 
-echo $x; // => 2
-echo $z; // => 2
-$y = 0;
-echo $x; // => 2
-echo $z; // => 0
+// Reference 
+test('Reference', function () {
+  $x = 1;
+  $y = 2;
+  $x = $y; // $x now contains the same value as $y
+  $z = &$y;
+  // $z now contains a reference to $y. Changing the value of
+  // $z will change the value of $y also, and vice-versa.
+  // $x will remain unchanged as the original value of $y
 
-// Dumps type and value of variable to stdout
-var_dump($z); // prints int(0)
+  // // fill start
+  // echo $x; // => 2
+  // echo $z; // => 2
+  // $y = 0;
+  // echo $x; // => 2
+  // echo $z; // => 0
+  // // fill end
 
-// Prints variable to stdout in human-readable format
-// print_r($array); // prints: Array ( [0] => One [1] => Two [2] => Three )
+  // tests
+  $this->assertEquals(2, $x);
+  $this->assertEquals(2, $z);
+  $y = 0;
+  $this->assertEquals(2, $x);
+  $this->assertEquals(0, $z);
+});
+
+
+test('Print an array', function () {
+  // Prints variable to stdout in human-readable format with print_r
+
+  $array = ['One', 'Two', 'Three'];
+
+  // fill start
+  print_r($array);
+  // fill end
+
+  $this->expectOutputString('Array
+(
+    [0] => One
+    [1] => Two
+    [2] => Three
+)
+');
+});
 
 /********************************
  * Logic
  */
-$a = 0;
-$b = '0';
-$c = '1';
-$d = '1';
+
 
 // assert throws a warning if its argument is not true
 
-// These comparisons will always be true, even if the types aren't the same.
-assert($a == $b); // equality
-assert($c != $a); // inequality
-assert($c <> $a); // alternative inequality
-assert($a < $c);
-assert($c > $b);
-assert($a <= $b);
-assert($c >= $d);
 
-// The following will only be true if the values match and are the same type.
-assert($c === $d);
-assert($a !== $d);
-// assert(1 === '1');
-assert(1 !== '1');
+test('Logical operators', function () {
+  // Logical operators
 
-// 'Spaceship' operator (since PHP 7)
-// Returns 0 if values on either side are equal
-// Returns 1 if value on the left is greater
-// Returns -1 if the value on the right is greater
+  $a = 0;
+  $b = '0';
+  $c = '1';
+  $d = '1';
 
-$a = 100;
-$b = 1000;
+  // fill start
+  // These comparisons will always be true, even if the types aren't the same.
+  $equal = $a == $b; 
+  $notEqual = $a != $b;
+  $lower = $a < $c;
+  $greater = $c > $b;
+  $lowerOrEqual = $a <= $b;
+  $greaterOrEqual = $c >= $d;
 
-echo $a <=> $a; // 0 since they are equal
-echo $a <=> $b; // -1 since $a < $b
-echo $b <=> $a; // 1 since $b > $a
+  // These comparisons will always be true, even if the types aren't the same.
+  $identical = $c === $d;
+  $notIdentical = $a !== $d;
+  $numberAndStringComparison = $a === $b;
+  $numberAndStringComparison2 = $a !== $b;
+
+
+  // fill end
+
+  $this->assertTrue($equal);
+  $this->assertFalse($notEqual);
+  $this->assertTrue($identical);
+  $this->assertTrue($notIdentical);
+  $this->assertTrue($lower);
+  $this->assertTrue($greater);
+  $this->assertTrue($lowerOrEqual);
+  $this->assertTrue($greaterOrEqual);
+  $this->assertFalse($numberAndStringComparison);
+  $this->assertTrue($numberAndStringComparison2);
+});
+
+
 
 // Variables can be converted between types, depending on their usage.
-
 $integer = 1;
 echo $integer + $integer; // => 2
 
-$string = '1';
-echo $string + $string; // => 2 (strings are coerced to integers)
+test('Autocasting', function () {
+  // Autocasting
 
-$string = 'one';
-// echo $string + $string; // => Unsupported operand types: string + string
-// Outputs Unsupported operand types: string + string because the + operator cannot cast the string 'one' to a number
+  $integer = 1;
+  $string = '1';
+  $string2 = 'one';
+
+  // this is not possible
+  // $integer + $string2; // 'Unsupported operand types: string + string');
+  // $string + $string2; //  Unsupported operand types: string + string
+
+  // fill start
+  $sum = $integer + $string;
+  $sum1 = $integer + $integer;
+  $sum2 = $string + $string;
+  // fill end
+
+  $this->assertEquals(2, $sum);
+  $this->assertEquals(2, $sum1);
+  $this->assertEquals(2, $sum2);
+});
+
 
 // Type casting can be used to treat a variable as another type
 
-$boolean = (bool) 1; // => true
 
-$zero = 0;
-$boolean = (bool) $zero; // => false
-
-// There are also dedicated functions for casting most types
-$integer = 5;
-$string = strval($integer);
 
 $var = null; // Null value
+
+test('Type casting', function () {
+  // There are also dedicated functions for casting most types
+
+  // Type casting
+  $boolean1 = (bool) 1; // => true
+  $boolean2 = (bool) 0; // => false
+  $integer = 5;
+  $string = '5';
+  $array = [1, 2, 3];
+  $object = (object) [1, 2, 3];
+
+  // fill start
+  $integerCast = (int) $string;
+  $stringCast = (string) $integer;
+  $arrayCast = (array) $object;
+  $objectCast = (object) $array;
+  $nullCast = null;
+  // fill end
+
+  $this->assertEquals(true, $boolean1);
+  $this->assertEquals(false, $boolean2);
+  $this->assertEquals(5, $integerCast);
+  $this->assertEquals('5', $stringCast);
+  $this->assertEquals([1, 2, 3], $arrayCast);
+  $this->assertEquals((object) [1, 2, 3], $objectCast);
+  $this->assertEquals(null, $nullCast);
+});
 
 
 /********************************
  * Control Structures
  */
 
-if (true) {
-  print 'I get printed';
-}
 
-if (false) {
-  print 'I don\'t';
-} else {
-  print 'I get printed';
-}
+test('If statement', function () {
+  // Control structures
 
-if (false) {
-  print 'Does not get printed';
-} elseif (true) {
-  print 'Does';
-}
+  // fill start
+  // set x to print 'Does print'
+  $x = 3;
+  // fill end
+
+  if ($x === 0) {
+    print 'Does not print';
+  } elseif ($x === 1) {
+    print 'Does not print';
+  } else {
+    print 'Does print';
+  }
+
+  $this->expectOutputString('Does print');
+});
 
 // ternary operator
 print(false ? 'Does not get printed' : 'Does');
+
+test('Ternary operator', function () {
+  // Ternary operator
+
+  // fill start
+  // set x to print 'Does print'
+  $x = 3;
+  // fill end
+
+  print($x === 0 ? 'Does not print' : 'Does print');
+
+  $this->expectOutputString('Does print');
+});
 
 // ternary shortcut operator since PHP 5.3
 // equivalent of "$x ? $x : 'Does'"
